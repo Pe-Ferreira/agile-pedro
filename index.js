@@ -45,7 +45,13 @@ $('body').on('change', '#marcas', function(){
 	grafico = gerarGrafico(marca.numeroDeVendas);
 });
 
+function randOrd() {
+	return (Math.round(Math.random())-0.5);
+}
+
 function gerarGrafico(dadosDeVenda){
+	var arrayParaPlot = [dadosDeVenda/2, dadosDeVenda/4, dadosDeVenda/8, dadosDeVenda/16];
+	arrayParaPlot.sort(randOrd);
 	var ctx = document.getElementById("myChart").getContext('2d');
 	var myChart = new Chart(ctx, {
     type: 'bar',
@@ -53,7 +59,7 @@ function gerarGrafico(dadosDeVenda){
         labels: ["January", "February", "March", "April"],
         datasets: [{
             label: 'Vendas',
-            data: [dadosDeVenda/2, dadosDeVenda/4, dadosDeVenda/8, dadosDeVenda/16],
+            data: arrayParaPlot,
             backgroundColor: [
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
