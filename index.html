@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+<head>
+	<!-- BOOTSTRAP CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<!-- FONTAWESOME -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+	<title>Agile - Pedro</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="#">Menu</a>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	        <span class="nav-link"><i class="fas fa-user"></i> User Name - </span>
+	      </li>
+	      </ul>
+	        <span class="navbar-text">Sales Report</span>
+	  </div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				<label>Categoria:</label>
+				<select id="categorias"></select>
+			</div>
+			<div class="col-4">
+				<label>Produto:</label>
+			<select id="produtos"></select>
+			</div>
+			<div class="col-4">
+				<label>Marca:</label>
+			<select id="marcas"></select>
+			</div>
+		</div>
+	</div>
+	<h3 style="text-align: center;">Sales by Month for</h3>
+	<canvas id="myChart" width="400" height="100"></canvas>
+</body>
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- BOOTSTRAP JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- CHART JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="index.js"></script>
+</html>
