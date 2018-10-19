@@ -18,30 +18,31 @@ $('body').on('change', '#categorias', function(){
 	});
 	var idCategoriaSelecionada = $('#categorias option:selected').val();
 	var categoria = buscaObjetoPorId(parseInt(idCategoriaSelecionada), massaDeDados.categorias);
-	grafico.data.datasets.data = [categoria.numeroDeVendas/2, categoria.numeroDeVendas/4, categoria.numeroDeVendas/8, categoria.numeroDeVendas/16];
-	grafico.update();
+	grafico.destroy();
+	grafico = gerarGrafico(categoria.numeroDeVendas);
 	$('#marcas').empty();
 });
 
 $('body').on('change', '#produtos', function(){
 	var idProduto = $(this).val();
+	var idCategoria = $('#categorias option:selected').val();
 	$('#marcas').empty();
 	massaDeDados.marcas.forEach(function(item){
-		if(item.produto.id == idProduto){
+		if(item.produto.id == idProduto && item.produto.categoria.id == idCategoria){
 			$('#marcas').append('<option value=' + item.id + '>' + item.nome + '</option>');
 		}
 	});
 	var idProdutoSelecionada = $('#produtos option:selected').val();
 	var produto = buscaObjetoPorId(parseInt(idProdutoSelecionada), massaDeDados.produtos);
-	grafico.data.datasets.data = [produto.numeroDeVendas/2, produto.numeroDeVendas/4, produto.numeroDeVendas/8, produto.numeroDeVendas/16];
-	grafico.update();
+	grafico.destroy();
+	grafico = gerarGrafico(produto.numeroDeVendas);
 });
 
 $('body').on('change', '#marcas', function(){
 	var idMarcaSelecionada = $('#marcas option:selected').val();
 	var marca = buscaObjetoPorId(parseInt(idMarcaSelecionada), massaDeDados.marcas);
-	grafico.data.datasets.data = [marca.numeroDeVendas/2, marca.numeroDeVendas/4, marca.numeroDeVendas/8, marca.numeroDeVendas/16];
-	grafico.update();
+	grafico.destroy();
+	grafico = gerarGrafico(marca.numeroDeVendas);
 });
 
 function gerarGrafico(dadosDeVenda){
@@ -112,17 +113,18 @@ function gerarDadosDeTeste(){
 			produto.numeroDeVendas = Math.floor(Math.random() * 300);
 			produto.categoria = categorias[i];
 			produtos.push(produto);
-			for(l = 0; l < QUANTIDADE_DE_MARCAS_POR_PRODUTO; l++){
-				var marca = new Object();
-				marca.id = l + 1;
-				marca.nome = 'Marca' + (l + 1) + 'do' + produtos[j].nome;
-				marca.numeroDeVendas = Math.floor(Math.random() * 150);
-				marca.produto = produtos[j];
-				marcas.push(marca);
-			}
 		}
 	}
-
+	for(i = 0; i < produtos.length; i++){
+		for(j = 0; j < QUANTIDADE_DE_MARCAS_POR_PRODUTO; j++){
+				var marca = new Object();
+				marca.id = j + 1;
+				marca.nome = 'Marca' + (j + 1) + 'do' + produtos[i].nome;
+				marca.numeroDeVendas = Math.floor(Math.random() * 150);
+				marca.produto = produtos[i];
+				marcas.push(marca);
+			}
+	}
 	var massaDeDados = new Object();
 	massaDeDados.categorias = categorias;
 	massaDeDados.produtos = produtos;
